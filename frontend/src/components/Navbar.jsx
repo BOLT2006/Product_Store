@@ -9,7 +9,12 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Container maxW="1140px" px={4}>
+    <Container
+      maxW="1140px"
+      px={4}
+      bg={{ base: "white", _dark: "#1e293b" }}
+      borderRadius="md"
+    >
       <Flex
         h={16}
         alignItems="center"
@@ -19,6 +24,7 @@ const Navbar = () => {
           sm: "row",
         }}
       >
+        {/* Logo */}
         <Text
           fontSize={{ base: "22px", sm: "28px" }}
           fontWeight="bold"
@@ -32,6 +38,7 @@ const Navbar = () => {
           <Link to="/">Product Store 🛒</Link>
         </Text>
 
+        {/* Buttons */}
         <HStack gap={2}>
           <Link to="/create">
             <Button>
