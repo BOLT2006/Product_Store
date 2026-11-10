@@ -4,10 +4,12 @@ import {
   Container,
   Heading,
   Input,
+  useToastStyles,
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useProductStore } from "../store/product.js";
+import { toaster } from "../components/ui/toaster";
 
 const CreatePage = () => {
   const [newProduct, setNewProduct] = useState({
@@ -15,11 +17,26 @@ const CreatePage = () => {
     price: "",
     image: "",
   });
+  const toast = useToastStyles;
   const { createProduct } = useProductStore();
   const handleAddProduct = async () => {
     const { success, message } = await createProduct(newProduct);
-    console.log("success", success);
-    console.log("message", message);
+    if (!success) {
+      toaster.create({
+        title: "Error",
+        description: message,
+        type: "error",
+        isClosable: true,
+      });
+    } else {
+      toaster.create({
+        title: "Success",
+        description: message,
+        type: "success",
+        isClosable: true,
+      });
+    }
+    setNewProduct({name : "", price: "", image: ""});
   };
 
   return (
