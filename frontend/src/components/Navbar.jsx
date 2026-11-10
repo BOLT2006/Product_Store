@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Plus, Moon, Sun } from "lucide-react";
 
 import { useColorMode } from "../components/ui/color-mode";
+import { useProductStore } from "../store/product.js";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
